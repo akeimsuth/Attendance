@@ -1,0 +1,24 @@
+{
+  "name": "Attendance",
+  "version": "0.0.0",
+  "authors": [
+    "akeimsuth <akeimsuth@gmail.com>"
+  ],
+  "description": "Computing Society members' attendance",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "firebase-element": "Polymer/firebase-element#~0.5.5"
+  }
+}

@@ -1,0 +1,66 @@
+  <link rel="import"
+  href="bower_components/paper-elements/paper-elements.html">
+
+     <link rel="import"
+  href="bower_components/paper-dialog/paper-dialog-transition.html">
+    <link rel="import"
+  href="bower_components/core-header-panel/core-header-panel.html">
+<link rel="import"
+  href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import"
+  href="bower_components/core-ajax/core-ajax.html">
+    <link rel="import"
+  href="bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="post-list.html">
+<link rel="import" href="post-card.html">
+
+
+<polymer-element name="society-member">
+	<style>
+		.container{
+			margin-left: 80%;
+		}
+	</style>
+	<template>
+		  <div class="container" layout vertical center>
+  			<paper-fab icon="add" on-tap={{toggleDialog}}></paper-fab>
+        <post-list show="all"></post-list>
+   		</div>
+		<paper-dialog id="dialog" heading="Member Form" layered backdrop transition="paper-dialog-transition-bottom">
+			<legend></legend>
+  			<paper-input id="Mname" label="name" floatingLabel=true value={{name}}></paper-input><br/>
+  			<paper-input id="Memail" label="email" floatingLabel=true value={{email}}></paper-input><br/>
+  			<paper-button hover dismissive on-tap={{toggleDialog}}>Cancel</paper-button>
+  			<paper-button hover affirmative default on-tap={{add}}>Add Member</paper-button>
+		</paper-dialog>
+		<paper-toast id="to" text="member saved"></paper-toast>
+		<firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}"></firebase-element>
+	</template>
+<script>
+	var i=0;
+  
+	Polymer('society-member',{
+
+       toggleDialog: function() {
+            this.$.dialog.toggle();
+        },add: function(){
+          this.$.base.push(
+            {
+        		  memberName:this.name,
+        		  memberEmail:this.email,
+              Dues:0
+            }
+        	);
+        	
+        	this.name='';
+        	this.email='';
+        	this.$.dialog.toggle();
+        	this.$.to.show();
+   }
+	});
+
+</script>
+
+
+
+</polymer-element>

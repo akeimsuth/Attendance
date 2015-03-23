@@ -1,0 +1,38 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="post-service/post-service.html">
+<link rel="import" href="post-card.html">
+    <link rel="import"
+  href="bower_components/firebase-element/firebase-element.html">
+<polymer-element name="post-list" attributes="show">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    post-card {
+      margin-bottom: 30px;
+      box-shadow: 3px 3px #E2DDEE;
+      border-radius: 5px 5px 5px 5px;
+    }
+    </style>
+
+      <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}"></firebase-element>
+    
+    <div layout vertical center reverse?="{{isReversed}}">
+      <template repeat="{{key in keys}}">
+        <post-card id="temp">
+          <h2>{{data[key].memberName}}</h2>
+             
+        </post-card>
+      </template>
+      
+    </div>
+  </template>
+  <script>
+  Polymer('post-list',{dues: function(){
+        //this.data[this.keys].Dues=this.due;
+        
+  }});
+  </script>
+</polymer-element>
