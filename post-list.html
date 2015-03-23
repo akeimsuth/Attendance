@@ -18,21 +18,63 @@
     </style>
 
       <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}"></firebase-element>
-    
-    <div layout vertical center reverse?="{{isReversed}}">
+      <div center-justified layout>
+     <paper-fab class="sen"icon="send" title="Send Table" style="background-color:green; margin-left:70%;" on-tap={{tog}}></paper-fab>
+    <div layout vertical center>
+
       <template repeat="{{key in keys}}">
-        <post-card id="temp">
+        <post-card id="temp" on-tap={{show}}>
           <h2>{{data[key].memberName}}</h2>
-             
+
         </post-card>
+ 
       </template>
-      
+
+    </div>
+    <div layout vertical center>
+          <paper-dialog id="dialog" heading="Dues Form" layered backdrop transition="paper-dialog-transition-bottom">
+              <paper-radio-group id="pick">
+                <paper-radio-button id="one" name="20" label="20" on-tap={{dues}}></paper-radio-button>
+                <paper-radio-button name="50" label="50" on-tap={{dues}}></paper-radio-button>
+                <paper-radio-button name="100" label="100" on-tap={{dues}}></paper-radio-button>
+              </paper-radio-group><br/>
+            <paper-button hover dismissive on-tap={{show}}>Cancel</paper-button>
+            <paper-button hover affirmative default on-tap={{show}}>Add Dues</paper-button>
+          </paper-dialog>
+    </div>
+        <div layout vertical center>
+          <paper-dialog id="dial" heading="Dues Form" layered backdrop transition="paper-dialog-transition-bottom">
+          <table border="1" style="width:100%;">
+             <tr>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Dues</th>
+             </tr>
+             <template repeat="{{key in keys}}">
+              <tr>
+             <td>{{data[key].memberName}}</td>
+         
+             <td>{{data[key].memberEmail}}</td>
+          
+             <td>{{due}}</td>
+           </tr>
+           </template>
+         
+         </table>
+            <paper-button hover dismissive on-tap={{tog}}>Cancel</paper-button>
+            <paper-button hover affirmative default>Send Table</paper-button>
+          </paper-dialog>
     </div>
   </template>
   <script>
   Polymer('post-list',{dues: function(){
-        //this.data[this.keys].Dues=this.due;
-        
-  }});
+       this.due=this.$.pick.selected;
+  },show: function(){
+    this.$.dialog.toggle();
+  },
+  tog: function(){
+    this.$.dial.toggle();
+  }
+  });
   </script>
 </polymer-element>

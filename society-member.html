@@ -17,12 +17,10 @@
 
 <polymer-element name="society-member">
 	<style>
-		.container{
-			margin-left: 80%;
-		}
+
 	</style>
 	<template>
-		  <div class="container" layout vertical center>
+		  <div class="container" center layout flex>
   			<paper-fab icon="add" on-tap={{toggleDialog}}></paper-fab>
         <post-list show="all"></post-list>
    		</div>
@@ -35,6 +33,7 @@
 		</paper-dialog>
 		<paper-toast id="to" text="member saved"></paper-toast>
 		<firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}"></firebase-element>
+    
 	</template>
 <script>
 	var i=0;
@@ -47,8 +46,7 @@
           this.$.base.push(
             {
         		  memberName:this.name,
-        		  memberEmail:this.email,
-              Dues:0
+        		  memberEmail:this.email
             }
         	);
         	
