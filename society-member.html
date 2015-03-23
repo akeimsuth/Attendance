@@ -21,9 +21,12 @@
 	</style>
 	<template>
 		  <div class="container" center layout flex>
-  			<paper-fab icon="add" on-tap={{toggleDialog}} style="margin-bottom:-20%;"></paper-fab>
+        <!--Adds a new member-->
+  			<paper-fab icon="add" on-tap={{toggleDialog}} style="margin-bottom:-22%;"></paper-fab>
+        <!--Members Names-->
         <post-list show="all"></post-list>
    		</div>
+      <!--Members Form-->
 		<paper-dialog id="dialog" heading="Member Form" layered backdrop transition="paper-dialog-transition-bottom">
 			<legend></legend>
   			<paper-input id="Mname" label="name" floatingLabel=true value={{name}}></paper-input><br/>
@@ -31,10 +34,12 @@
   			<paper-button hover dismissive on-tap={{toggleDialog}}>Cancel</paper-button>
   			<paper-button hover affirmative default on-tap={{add}}>Add Member</paper-button>
 		</paper-dialog>
+    <!--Member Notification-->
 		<paper-toast id="to" text="member saved"></paper-toast>
 		<firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}"></firebase-element>
 
 	</template>
+  <!--Magic! Magic! Magic!-->
 <script>
 	var i=0;
   
