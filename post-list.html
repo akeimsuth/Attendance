@@ -17,7 +17,7 @@
     }
     </style>
 
-      <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}"></firebase-element>
+      <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}" orderByChild="order"></firebase-element>
       <div center-justified layout>
      <paper-fab class="sen"icon="send" title="Send Table" style="background-color:green; margin-left:70%;margin-bottom:10%;" on-tap={{tog}}></paper-fab>
     <div layout vertical center>
@@ -56,24 +56,29 @@
          
              <td>{{data[key].memberEmail}}</td>
           
-             <td>{{due}}</td>
+             <td>{{data[key].Dues}}</td>
            </tr>
            </template>
          
          </table>
             <paper-button hover dismissive on-tap={{tog}}>Cancel</paper-button>
-            <paper-button hover affirmative default>Send Table</paper-button>
+            <paper-button hover affirmative default on-tap={{send}}>Send Table</paper-button>
           </paper-dialog>
     </div>
   </template>
   <script>
+  var i=0;
   Polymer('post-list',{dues: function(){
-       this.due=this.$.pick.selected;
+        this.data[this.keys[i]].Dues=this.$.pick.selected;
+        i++;
   },show: function(){
     this.$.dialog.toggle();
   },
   tog: function(){
     this.$.dial.toggle();
+  },send: function(){
+    this.$.dial.toggle();
+    i=0;
   }
   });
   </script>
