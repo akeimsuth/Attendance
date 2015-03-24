@@ -15,6 +15,12 @@
       box-shadow: 3px 3px #E2DDEE;
       border-radius: 5px 5px 5px 5px;
     }
+    core-icon-button {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      color: #636363;
+    }
     </style>
 
       <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}" orderByChild="order"></firebase-element>
@@ -23,8 +29,13 @@
      <!--Members Names-->
     <div layout vertical center>
       <template repeat="{{key in keys}}">
-        <post-card id="temp" on-tap={{show}}>
-          <h2>{{data[key].memberName}}</h2>
+        <post-card id="temp">
+          <h2 on-tap={{show}}>{{data[key].memberName}}</h2>
+                <core-icon-button
+                  id="favicon"
+                  icon="create">
+                </core-icon-button>
+          
         </post-card>
       </template>
     </div>
