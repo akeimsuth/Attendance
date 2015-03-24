@@ -1,6 +1,7 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="post-service/post-service.html">
 <link rel="import" href="post-card.html">
+<link rel="import" href="../bower_components/core-icon-button/core-icon-button.html">
     <link rel="import"
   href="bower_components/firebase-element/firebase-element.html">
 <polymer-element name="post-list" attributes="show">
@@ -25,7 +26,7 @@
 
       <firebase-element id="base" location="https://blistering-torch-1997.firebaseio.com" data="{{data}}" keys="{{keys}}" orderByChild="order"></firebase-element>
       <div center-justified layout>
-     <paper-fab class="sen"icon="send" title="Send Table" style="background-color:green; margin-left:70%;margin-bottom:0%;" on-tap={{tog}}></paper-fab>
+     <paper-fab class="sen"icon="send" title="Send Table" style="background-color:green; margin-left:70%;" on-tap={{tog}}></paper-fab>
      <!--Members Names-->
     <div layout vertical center>
       <template repeat="{{key in keys}}">
